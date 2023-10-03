@@ -33,7 +33,8 @@ def admin_only(f):
     return decorated_function
 
 # CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_URI", "sqlite:///posts.db")db = SQLAlchemy()
+app.config['SECRET_KEY'] = os.environ.get('FLASK_KEY')
+db = SQLAlchemy()
 db.init_app(app)
 
 
@@ -236,4 +237,4 @@ def contact():
 
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True, port=5002)
